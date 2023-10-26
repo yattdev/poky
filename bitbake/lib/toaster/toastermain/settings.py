@@ -321,7 +321,7 @@ BUILDDIR = os.environ.get("BUILDDIR")
 
 # LOG VIEWER
 # https://pypi.org/project/django-log-viewer/
-LOG_VIEWER_FILES_PATTERN = '*.log*'
+LOG_VIEWER_FILES_PATTERN = 'toast*.log*'
 LOG_VIEWER_FILES_DIR = Path(os.environ.get('BUILDDIR', '/tmp'))
 LOG_VIEWER_PAGE_LENGTH = 25      # total log lines per-page
 LOG_VIEWER_MAX_READ_LINES = 100000  # total log lines will be read
