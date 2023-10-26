@@ -7,8 +7,7 @@ import json
 from pathlib import Path
 from django.http import HttpRequest
 
-BUILDDIR = Path(os.environ.get('BUILDDIR'))
-
+BUILDDIR = Path(os.environ.get('BUILDDIR', '/tmp'))
 
 def log_api_request(request, response, view, logger_name='api'):
     """Helper function for LogAPIMixin"""
@@ -109,7 +108,7 @@ LOGGING_SETTINGS = {
         'file_django': {
             'level': 'INFO',
             'class': 'logging.handlers.TimedRotatingFileHandler',
-            'filename': BUILDDIR / 'toaster_django.log',
+            'filename': BUILDDIR / 'toaster_logs/django.log',
             'when': 'D',  # interval type
             'interval': 1,  # defaults to 1
             'backupCount': 10,  # how many files to keep
@@ -118,7 +117,7 @@ LOGGING_SETTINGS = {
         'file_api': {
             'level': 'INFO',
             'class': 'logging.handlers.TimedRotatingFileHandler',
-            'filename': BUILDDIR / 'toaster_api.log',
+            'filename': BUILDDIR / 'toaster_logs/api.log',
             'when': 'D',
             'interval': 1,
             'backupCount': 10,
@@ -127,7 +126,7 @@ LOGGING_SETTINGS = {
         'file_toaster': {
             'level': 'INFO',
             'class': 'logging.handlers.TimedRotatingFileHandler',
-            'filename': BUILDDIR / 'toaster.log',
+            'filename': BUILDDIR / 'toaster_logs/web.log',
             'when': 'D',
             'interval': 1,
             'backupCount': 10,
